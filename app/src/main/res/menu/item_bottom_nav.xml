@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <item
+        android:id="@+id/tabHome"
+        android:icon="@drawable/ic_homepage"
+        android:title="Home"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/tabReview"
+        android:icon="@drawable/ic_review"
+        android:title="Review"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/tabImage"
+        android:icon="@drawable/ic_image"
+        android:title="Image"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/tabUser"
+        android:icon="@drawable/ic_user"
+        android:title="User"
+        app:showAsAction="always" />
+
+</menu>

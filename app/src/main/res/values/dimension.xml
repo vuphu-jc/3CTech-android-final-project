@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="slider_height">200dp</dimen>
+    <dimen name="margin">20dp</dimen>
+    <dimen name="title_recycler_1">20sp</dimen>
+    <dimen name="margin_item">10dp</dimen>
+    <dimen name="text_item">15dp</dimen>
+    <dimen name="width_image_item">170dp</dimen>
+    <dimen name="height_image_item">225dp</dimen>
+    <dimen name="height_title_item">40sp</dimen>
+    <dimen name="card_view">5dp</dimen>
+</resources>
