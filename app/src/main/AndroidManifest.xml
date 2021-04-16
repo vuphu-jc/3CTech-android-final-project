@@ -3,7 +3,7 @@
     package="com.khaithu.a3ctech_android_final_project">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.3CTechandroidfinalproject">
-        <activity android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".view.VideoPlayerView"
+            android:configChanges="orientation|screenSize">
+        </activity>
+        <activity
+            android:name=".view.MovieDetailActivity"
+            android:label="@string/title_activity_movie_detail_view"
+            android:theme="@style/Theme.3CTechandroidfinalproject.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.3CTechandroidfinalproject.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
