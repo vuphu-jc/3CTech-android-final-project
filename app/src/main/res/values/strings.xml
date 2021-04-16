@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">3CTech-android-final-project</string>
+    <string name="app_name">TMDb Fake</string>
+    <string name="title_recycler_1">What\'s Popular</string>
+    <string name="todo">TODO</string>
 </resources>
