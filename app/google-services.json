@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254336931759",
+    "project_id": "chatapp-1a31b",
+    "storage_bucket": "chatapp-1a31b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254336931759:android:0b4e5564a62d8e92dd815a",
+        "android_client_info": {
+          "package_name": "com.hieuminh.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254336931759-lg9kms1bsrjv75km8qa86j5uakk1uchp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo8tWO7tRKTzGYo8nFLECE-pKlVv1wizU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254336931759-lg9kms1bsrjv75km8qa86j5uakk1uchp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
