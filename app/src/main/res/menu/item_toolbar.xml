@@ -5,9 +5,9 @@
     android:layout_height="match_parent">
 
     <item
-        android:id="@+id/itemSearch"
-        android:icon="@drawable/ic_search"
-        android:title="Search"
+        android:id="@+id/itemClose"
+        android:icon="@drawable/ic_close"
+        android:title="Close"
         app:showAsAction="always" />
 
 </menu>

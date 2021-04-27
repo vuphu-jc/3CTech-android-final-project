@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_5"
+    app:cardCornerRadius="@dimen/dp_5"
+    android:id="@+id/cardView">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp_10">
+
+        <ImageView
+            android:id="@+id/imageMovie"
+            android:layout_width="@dimen/dp_170"
+            android:layout_height="@dimen/dp_230"
+            android:contentDescription="@string/todo"
+            android:scaleType="centerInside"
+            android:src="@drawable/kong" />
+
+        <TextView
+            android:id="@+id/titleMovie"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sp_40"
+            android:layout_margin="@dimen/dp_10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_15"
+            tools:ignore="SpUsage" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/releaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textSize="@dimen/dp_15"
+                tools:ignore="RelativeOverlap,SpUsage" />
+
+            <com.khaithu.a3ctech_android_final_project.customview.RateView
+                android:id="@+id/rateView"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_alignParentRight="true"
+                tools:ignore="RtlHardcoded"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

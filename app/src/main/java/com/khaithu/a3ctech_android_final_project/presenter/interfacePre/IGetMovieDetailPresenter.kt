@@ -1,6 +1,8 @@
 package com.khaithu.a3ctech_android_final_project.presenter.interfacePre
 
+interface IGetMovieDetailPresenter {
 
-interface IGetMoviePresenter {
-    fun getMovies()
+    fun getMovieDetail(movieId: Int)
+
+
 }

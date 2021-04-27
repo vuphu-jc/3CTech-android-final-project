@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RateView">
+        <attr name="rvpercent" format="integer">80</attr>
+    </declare-styleable>
+</resources>

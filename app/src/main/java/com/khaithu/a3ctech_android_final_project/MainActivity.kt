@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         loadFragment(HomeView())
         bottomNav.setOnNavigationItemSelectedListener(this)
     }
@@ -30,10 +29,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 loadFragment(fragment)
                 return true
             }
-            R.id.tabImage -> {
-                loadFragment(fragment)
-                return true
-            }
+ 
             R.id.tabUser -> {
                 loadFragment(fragment)
                 return true
