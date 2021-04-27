@@ -20,15 +20,15 @@ import com.khaithu.a3ctech_android_final_project.model.SliderData
 import com.khaithu.a3ctech_android_final_project.presenter.GetMoviePresenter
 import com.khaithu.a3ctech_android_final_project.view.MovieDetailActivity
 import com.khaithu.a3ctech_android_final_project.view.interfaceView.IHomeView
+import com.khaithu.a3ctech_android_final_project.view.navigator.HomeViewNavigator
 import com.smarteist.autoimageslider.SliderView
 import kotlinx.android.synthetic.main.fragment_homepage.view.*
 
 class HomeView : Fragment(), IHomeView, IHandleEvent {
-
-    private var mPresenter: GetMoviePresenter = GetMoviePresenter(this)
-
     private lateinit var mView: View
     private lateinit var mHomeAdapter: HomePageRecyclerAdapter
+    private var mPresenter: GetMoviePresenter = GetMoviePresenter(this)
+    private var mHomeViewNavigator = HomeViewNavigator(this)
 
     //TODO Upgrade fetch data from server
     var sliderItems: List<SliderData> = arrayListOf(
@@ -56,9 +56,7 @@ class HomeView : Fragment(), IHomeView, IHandleEvent {
     }
 
     override fun onClickEvent(id: Int) {
-        val intent = Intent(context, MovieDetailActivity::class.java)
-        intent.putExtra(Constant.intentDetailMovie, id)
-        startActivity(intent)
+        mHomeViewNavigator.goToMovieDetailView(id)
     }
 
     override fun onDestroy() {
@@ -83,7 +81,4 @@ class HomeView : Fragment(), IHomeView, IHandleEvent {
         view.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }
-
-
-
 }
