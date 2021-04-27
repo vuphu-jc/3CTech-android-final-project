@@ -7,11 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#17B10C</color>
+    <color name="colorPrimary">#00695c</color>
     <color name="colorBackground">#394141</color>
     <color name="colorPrimaryDark">#1BC1E2</color>
     <color name="colorAccent">#1BC1E2</color>
     <color name="custom_dialog_background">#ccc</color>
     <color name="btn_login_enable">#FFFFFF</color>
     <color name="btn_login_unable">#AEAAAA</color>
+    <color name="colorTimeItem">#423315</color>
 </resources>
