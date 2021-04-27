@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">ChatApp</string>
+    <string name="already_have_an_account">Already Have an Account?</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="you_haven_t_an_account_yet">You haven\'t an account yet?</string>
+    <string name="register_now">Register now</string>
+    <string name="or">OR</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="email">Email</string>
+    <string name="login_loading">Login…</string>
+    <string name="notice">Notice!</string>
+    <string name="ok">OK</string>
+    <string name="empty" />
+    <string name="login_with_google_is_not_available">Login with Google is not available now!</string>
+    <string name="login_with_facebook_is_not_available">Login with Facebook is not available now!</string>
+    <string name="username_example">hieuminh22690@gmail.com</string>
+    <string name="password_example">12345678</string>
 </resources>
