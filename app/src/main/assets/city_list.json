@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1583992,
+    "name": "Đà Nẵng",
+    "country": "VN"
+  },
+  {
+    "id": 1565033,
+    "name": "Tỉnh Thừa Thiên-Huế",
+    "country": "VN"
+  },
+  {
+    "id": 1581130,
+    "name": "Ha Noi",
+    "country": "VN"
+  },
+  {
+    "id": 1566083,
+    "name": "Ho Chi Minh",
+    "country": "VN"
+  },
+  {
+    "id": 1609350,
+    "name": "Bangkok",
+    "country": "TH"
+  },
+  {
+    "id": 1796236,
+    "name": "Shanghai",
+    "country": "CN"
+  },
+  {
+    "id": 1835848,
+    "name": "Seoul",
+    "country": "KR"
+  },
+  {
+    "id": 5056033,
+    "name": "London",
+    "country": "US"
+  },
+  {
+    "id": 5128638,
+    "name": "New York",
+    "country": "US"
+  },
+  {
+    "id": 1850147,
+    "name": "Tokyo",
+    "country": "JP"
+  }
+]
