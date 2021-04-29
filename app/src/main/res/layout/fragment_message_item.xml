@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/ll_container_message_item"
+        android:id="@+id/llContainerMessageItem"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
         android:padding="@dimen/dp_4"
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:src="@drawable/google"
+            android:src="@drawable/ic_baseline_person_24"
             app:civ_border_color="@color/black"
             app:civ_border_width="@dimen/dp_1" />
 
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="@dimen/sp_16"
+                android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
                 tools:ignore="NestedWeights" />
 
@@ -43,7 +43,10 @@
 
                 <TextView
                     android:id="@+id/tvLastWordItem"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:layout_height="match_parent" />
 
                 <TextView

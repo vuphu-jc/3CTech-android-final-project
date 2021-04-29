@@ -25,4 +25,6 @@
     <string name="chat_app">ChatApp</string>
     <string name="chat_view_tab">Chat</string>
     <string name="setting_view_tab">Setting</string>
+    <string name="you">You: </string>
+    <string name="blank">: </string>
 </resources>
