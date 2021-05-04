@@ -25,6 +25,15 @@
     <string name="chat_app">ChatApp</string>
     <string name="chat_view_tab">Chat</string>
     <string name="setting_view_tab">Setting</string>
+    <string name="add_chat">Add Chat</string>
+    <string name="result">Result:</string>
+    <string name="name">Name:</string>
+    <string name="enter_an_email_to_add_chat">Enter an email to add chat</string>
+    <string name="request_connect">Request connect</string>
+    <string name="user_is_not_exist">User is not exist!</string>
     <string name="you">You: </string>
     <string name="blank">: </string>
+    <string name="connect_success">Connect success!</string>
+    <string name="texting_youself_is_not_available">You cannot message yourself now, please try again later!</string>
+    <string name="this_user_is_connected_before">This user is connected before!</string>
 </resources>

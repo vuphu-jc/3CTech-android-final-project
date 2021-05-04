@@ -53,8 +53,10 @@
                     android:id="@+id/tvLastTimeItem"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/dp_4"
-                    android:layout_marginLeft="@dimen/dp_4"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:layout_marginRight="@dimen/dp_4"
+                    android:layout_marginEnd="@dimen/dp_4"
                     android:textColor="@color/colorTimeItem" />
 
             </LinearLayout>

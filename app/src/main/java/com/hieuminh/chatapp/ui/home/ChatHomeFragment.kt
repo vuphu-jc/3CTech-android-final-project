@@ -33,6 +33,8 @@ class ChatHomeFragment : Fragment(), ChatHomeContract.View, OnItemChatHomeClickL
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init(view)
+
+        fabAddChat.setOnClickListener(onStartAddChatListener())
     }
 
     override fun onDestroy() {
@@ -52,6 +54,8 @@ class ChatHomeFragment : Fragment(), ChatHomeContract.View, OnItemChatHomeClickL
     override fun onGetValueSuccess(messages: MessageModel) {
         mChatHomeAdapter.updateData(listOf(messages))
     }
+
+    private fun onStartAddChatListener() = View.OnClickListener { mHomeNavigator.startAddChatFragment() }
 
     private fun initAdapter() {
         mChatHomeAdapter = ChatHomeAdapter()
