@@ -25,7 +25,7 @@ class GetMovieDetailPresenter(var iMovieDetailView: IMovieDetailView) : BasePres
             movieId,
             BuildConfig.TMDBApiKey,
             // TODO add feature language later.
-            LanguageEnum.VIETNAM.value
+            LanguageEnum.ENGLISH.value
         )
         call.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
