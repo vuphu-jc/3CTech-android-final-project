@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.AddChatFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:title="@string/add_chat"
+        app:titleTextColor="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/etAddChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_64"
+            android:layout_marginRight="@dimen/dp_32"
+            android:background="@drawable/round_border"
+            android:drawableEnd="@drawable/ic_baseline_search_24"
+            android:drawableRight="@drawable/ic_baseline_search_24"
+            android:drawablePadding="@dimen/dp_16"
+            android:hint="@string/enter_an_email_to_add_chat"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:padding="@dimen/dp_16"
+            android:text="@string/username_example"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btSearchEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginRight="@dimen/dp_32"
+            android:background="@drawable/round_bg"
+            android:text="@string/search"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etAddChat"
+            android:textSize="@dimen/sp_18"/>
+
+        <!-- Success fragment -->
+        <LinearLayout
+            android:id="@+id/llSearchSuccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_64"
+            android:layout_marginRight="@dimen/dp_32"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btSearchEmail">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/result"
+                android:textColor="@color/red"
+                android:textSize="@dimen/sp_20" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civAvatar"
+                    android:layout_width="@dimen/dp_70"
+                    android:layout_height="@dimen/dp_70"
+                    android:src="@drawable/ic_baseline_person_24" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_70"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="@string/email" />
+
+                        <TextView
+                            android:id="@+id/tvEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/dp_12"
+                            android:layout_marginLeft="@dimen/dp_12"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="@string/name" />
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/dp_12"
+                            android:layout_marginLeft="@dimen/dp_12"
+                            android:gravity="center_vertical" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btAddChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32"
+                android:background="@drawable/round_bg"
+                android:text="@string/add_chat"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18" />
+
+        </LinearLayout>
+
+        <!-- Not Found fragment -->
+        <LinearLayout
+            android:id="@+id/llSearchNotFound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_64"
+            android:layout_marginRight="@dimen/dp_32"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btSearchEmail">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/result"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sp_20" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/user_is_not_exist"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_18" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btRequestConnect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32"
+                android:background="@drawable/round_bg"
+                android:text="@string/request_connect"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/processBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dp_32"
+                android:layout_marginBottom="@dimen/dp_64" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
