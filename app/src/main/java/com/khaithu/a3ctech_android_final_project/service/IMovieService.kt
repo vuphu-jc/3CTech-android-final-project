@@ -2,6 +2,7 @@ package com.khaithu.a3ctech_android_final_project.service
 
 import com.khaithu.a3ctech_android_final_project.model.MovieDetail
 import com.khaithu.a3ctech_android_final_project.model.PageMovie
+import com.khaithu.a3ctech_android_final_project.model.Video
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,4 +25,10 @@ interface IMovieService {
         @Query("language") language: String
     ): Observable<MovieDetail>
 
+    @GET("3/movie/{movie_id}/videos")
+    fun getVideo(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String
+    ) : Observable<Video>
 }

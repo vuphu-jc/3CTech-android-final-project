@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.3CTechandroidfinalproject">
-        <activity android:name=".view.VideoPlayerView"
+        <activity
+            android:name=".view.VideoPlayerActivity"
+            android:theme="@style/Theme.Transparent"
             android:configChanges="orientation|screenSize">
+
         </activity>
         <activity
             android:name=".view.MovieDetailActivity"
@@ -24,6 +27,7 @@
             android:theme="@style/Theme.3CTechandroidfinalproject.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

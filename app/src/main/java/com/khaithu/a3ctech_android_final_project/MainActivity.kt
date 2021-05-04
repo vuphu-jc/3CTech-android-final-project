@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.khaithu.a3ctech_android_final_project.view.fragment.HomeView
+import com.khaithu.a3ctech_android_final_project.view.fragment.SearchView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -26,12 +27,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 return true
             }
             R.id.tabReview -> {
+                fragment = SearchView()
                 loadFragment(fragment)
                 return true
             }
- 
             R.id.tabUser -> {
-                loadFragment(fragment)
                 return true
             }
         }
@@ -42,5 +42,3 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         supportFragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit()
     }
 }
-
-
