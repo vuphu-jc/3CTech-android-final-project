@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.hieuminh.chatapp.R
 import com.hieuminh.chatapp.dialog.CustomAlertDialog
@@ -82,8 +83,11 @@ class ChatDetailFragment : Fragment(), ChatDetailContract.View {
                 ownerUser = message.secondUser
                 partnerUser = message.firstUser
             }
-            message.messages?.let { mChatDetailAdapter.setData(ownerUser, partnerUser, it) }
+            val a = message.messages
+            if(a != null) mChatDetailAdapter.setData(ownerUser, partnerUser, a)
+            else mChatDetailAdapter.setData(ownerUser, partnerUser)
             mView.tvName.text = partnerUser?.name
+            Glide.with(mView).load(partnerUser?.photoUrl).into(mView.civAvatar)
             isCheckTransformData = true
         } else {
             message.messages?.let { mChatDetailAdapter.updateData(it) }

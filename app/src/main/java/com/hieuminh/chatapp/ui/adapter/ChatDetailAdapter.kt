@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.hieuminh.chatapp.R
 import com.hieuminh.chatapp.enum.ChatType
 import com.hieuminh.chatapp.model.UserModel
@@ -20,7 +21,7 @@ class ChatDetailAdapter() : BaseAdapter<WordModel, RecyclerView.ViewHolder>() {
     fun setData(
         ownerUser: UserModel?,
         partnerUser: UserModel?,
-        word: MutableList<WordModel>
+        word: MutableList<WordModel> = ArrayList()
     ) {
         this.ownerUser = ownerUser
         this.partnerUser = partnerUser
@@ -77,10 +78,12 @@ class ChatDetailAdapter() : BaseAdapter<WordModel, RecyclerView.ViewHolder>() {
                 ownerUser?.type -> {
                     itemView.tvTextSend.text = word.content
                     itemView.tvTimeSend.text = word.time?.toStr()
+                    Glide.with(itemView).load(ownerUser?.photoUrl).into(itemView.civAvatarSend)
                 }
                 partnerUser?.type -> {
                     itemView.tvTextReceive.text = word.content
                     itemView.tvTimeReceive.text = word.time?.toStr()
+                    Glide.with(itemView).load(partnerUser?.photoUrl).into(itemView.civAvatarReceive)
                 }
             }
         }

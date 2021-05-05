@@ -16,7 +16,6 @@ class ChatHomePresenterImpl(private var view: ChatHomeContract.View?) : ChatHome
     private val mFirebaseAuth = FirebaseAuth.getInstance()
 
     override fun getValue() {
-
         mFirebaseAuth.uid?.let { it ->
             mDataBaseReference.child(it).child(CHAT)
                 .addValueEventListener(object : ValueEventListener {

@@ -19,4 +19,8 @@ object Constant {
     object TimeFormat {
         const val DATE_FORMAT = "yyyy-MM-dd HH:mm"
     }
+
+    object NotificationChannel {
+        const val CHANNEL_RECEIVE_NOTIFICATION = "Channel_receive_notification"
+    }
 }
