@@ -1,8 +1,6 @@
 package com.khaithu.a3ctech_android_final_project.service
 
-import com.khaithu.a3ctech_android_final_project.model.MovieDetail
-import com.khaithu.a3ctech_android_final_project.model.PageMovie
-import com.khaithu.a3ctech_android_final_project.model.Video
+import com.khaithu.a3ctech_android_final_project.model.*
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -30,5 +28,15 @@ interface IMovieService {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ) : Observable<Video>
+    ): Observable<Video>
+
+    @GET("3/search/{category}")
+    fun search(
+        @Path("category") category: String,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("query") query: String,
+        @Query("page") page: Int,
+        @Query(value = "include_adult") adult: Boolean
+    ): Observable<Search>
 }

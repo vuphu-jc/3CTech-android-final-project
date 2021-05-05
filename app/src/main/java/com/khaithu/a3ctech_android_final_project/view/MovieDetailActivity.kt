@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_movie_detail.*
 
 class MovieDetailActivity : AppCompatActivity(), IMovieDetailView {
 
-
     private val mPresenter: GetMovieDetailPresenter =
         GetMovieDetailPresenter(this)
     private val mMovieDetailNavigator: MovieDetailNavigator = MovieDetailNavigator(this)
