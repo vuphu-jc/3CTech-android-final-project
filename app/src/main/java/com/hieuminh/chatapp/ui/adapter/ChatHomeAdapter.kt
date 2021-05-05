@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.hieuminh.chatapp.R
 import com.hieuminh.chatapp.model.MessageModel
@@ -63,11 +64,29 @@ class ChatHomeAdapter() :
 
             view.tvLastWordItem.text = lastWordText
             view.tvLastTimeItem.text = lastWord?.time?.toStr()
+
+            Glide.with(view)
+                .load(partnerUser?.photoUrl)
+                .into(view.civAvatarItem)
         }
 
         private fun handleEvents() {
             view.llContainerMessageItem.setOnClickListener {
                 onItemClickListener?.onItemClick(mDataList[layoutPosition].id)
+            }
+        }
+    }
+
+    override fun updateData(data: List<MessageModel>, isNotifyAll: Boolean) {
+        data.forEach {
+            val item = mDataList.find { t -> t.id == it.id }
+            if(item != null) {
+                val index = mDataList.indexOf(item)
+                mDataList[index] = it
+                this.notifyItemChanged(index)
+            } else {
+                mDataList.add(0, it)
+                this.notifyItemInserted(0)
             }
         }
     }

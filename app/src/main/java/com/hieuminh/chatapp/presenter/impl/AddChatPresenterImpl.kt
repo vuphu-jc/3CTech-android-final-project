@@ -85,12 +85,14 @@ class AddChatPresenterImpl(private var view: AddChatContract.View?) : AddChatCon
         message.firstUser = UserModel(
             mAuth.currentUser?.uid,
             mAuth.currentUser?.displayName,
-            ConnectType.USER_CONNECT.index
+            ConnectType.USER_CONNECT.index,
+            mAuth.currentUser?.photoUrl.toString()
         )
         message.secondUser = UserModel(
             userProfile?.id,
             userProfile?.name,
-            ConnectType.USER_PARTNER.index
+            ConnectType.USER_PARTNER.index,
+            userProfile?.avatarUrl
         )
         mFirebaseDatabase.child(CHAT).push().setValue(
             message

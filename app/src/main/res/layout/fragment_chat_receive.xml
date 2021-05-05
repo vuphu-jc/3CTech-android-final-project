@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/tvAvatarReceive"
+        android:id="@+id/civAvatarReceive"
         android:layout_width="@dimen/dp_32"
         android:layout_height="@dimen/dp_32"
         android:layout_margin="@dimen/dp_8"
@@ -28,7 +28,7 @@
             android:layout_marginRight="@dimen/dp_46"
             android:background="@drawable/round_chat_receive"
             android:padding="@dimen/dp_8"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_16"
             android:layout_marginEnd="@dimen/dp_46" />
 
         <TextView

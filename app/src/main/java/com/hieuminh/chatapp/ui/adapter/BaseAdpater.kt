@@ -8,7 +8,7 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder> : RecyclerView.Adapt
 
     override fun getItemCount(): Int = mDataList.size
 
-    fun updateData(data: List<T>, isNotifyAll: Boolean = true) {
+    open fun updateData(data: List<T>, isNotifyAll: Boolean = true) {
         val positionStart = mDataList.size
         mDataList.addAll(data)
         if (isNotifyAll) this.notifyItemRangeInserted(positionStart, mDataList.lastIndex)

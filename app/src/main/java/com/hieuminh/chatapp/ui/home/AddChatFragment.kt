@@ -8,6 +8,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.hieuminh.chatapp.R
 import com.hieuminh.chatapp.dialog.CustomAlertDialog
 import com.hieuminh.chatapp.model.UserProfileModel
@@ -55,6 +56,7 @@ class AddChatFragment : Fragment(), AddChatContract.View {
         mView.llSearchSuccess.visibility = VISIBLE
         mView.tvEmail.text = userProfile?.email
         mView.tvName.text = userProfile?.name
+        Glide.with(mView).load(userProfile?.avatarUrl).into(mView.civAvatar)
     }
 
     override fun onSearchNotFound() {

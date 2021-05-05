@@ -38,4 +38,6 @@
     <string name="connect_success">Connect success!</string>
     <string name="texting_youself_is_not_available">You cannot message yourself now, please try again later!</string>
     <string name="this_user_is_connected_before">This user is connected before!</string>
+    <string name="receive_notification">Receive notification</string>
+    <string name="notification">Notification</string>
 </resources>

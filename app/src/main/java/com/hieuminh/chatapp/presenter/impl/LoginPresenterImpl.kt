@@ -2,11 +2,15 @@ package com.hieuminh.chatapp.presenter.impl
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
+import com.hieuminh.chatapp.constant.Constant.RTDBFirebaseAttrsName.USER_PROFILE
+import com.hieuminh.chatapp.model.UserProfileModel
 import com.hieuminh.chatapp.presenter.contract.LoginContract
 
 class LoginPresenterImpl(private var view: LoginContract.View?) : LoginContract.Presenter {
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val mDataBaseReference = FirebaseDatabase.getInstance().reference
 
     override fun login(email: String, password: String) {
         view?.onStartProcessBar()
@@ -25,7 +29,21 @@ class LoginPresenterImpl(private var view: LoginContract.View?) : LoginContract.
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
-                view?.onUpdateUI(if (task.isSuccessful) mAuth.currentUser else null)
+                if (task.isSuccessful) {
+                    val userProfile = UserProfileModel(
+                        mAuth.uid,
+                        mAuth.currentUser?.email,
+                        mAuth.currentUser?.displayName,
+                        mAuth.currentUser?.photoUrl?.toString(),
+                        mAuth.currentUser?.phoneNumber
+                    )
+                    val userProfileMap = HashMap<String, Any>()
+                    userProfileMap[USER_PROFILE] = userProfile
+                    mAuth.uid?.let { mDataBaseReference.child(it).updateChildren(userProfileMap) }
+                    view?.onUpdateUI(mAuth.currentUser)
+                } else {
+                    view?.onUpdateUI(null)
+                }
             }
     }
 

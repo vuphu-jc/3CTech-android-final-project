@@ -24,7 +24,7 @@
             android:background="@drawable/round_chat_send"
             android:padding="@dimen/dp_8"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tvTimeSend"
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/tvAvatarSend"
+        android:id="@+id/civAvatarSend"
         android:layout_width="@dimen/dp_32"
         android:layout_height="@dimen/dp_32"
         android:layout_margin="@dimen/dp_8"
