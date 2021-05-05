@@ -12,7 +12,7 @@ interface IMovieService {
     fun getMovies(
         @Path("category") category: String,
         @Query("api_key") apiKey: String,
-        @Query("language") language: String,
+        @Query("language") language: String?,
         @Query("page") page: Int
     ): Observable<PageMovie>
 
@@ -20,21 +20,21 @@ interface IMovieService {
     fun getMovieDetail(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
-        @Query("language") language: String
+        @Query("language") language: String?
     ): Observable<MovieDetail>
 
     @GET("3/movie/{movie_id}/videos")
     fun getVideo(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
-        @Query("language") language: String
+        @Query("language") language: String?
     ): Observable<Video>
 
     @GET("3/search/{category}")
     fun search(
         @Path("category") category: String,
         @Query("api_key") apiKey: String,
-        @Query("language") language: String,
+        @Query("language") language: String?,
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query(value = "include_adult") adult: Boolean

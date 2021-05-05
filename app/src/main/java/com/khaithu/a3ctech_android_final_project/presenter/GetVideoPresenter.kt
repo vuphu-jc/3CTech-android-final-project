@@ -15,7 +15,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class GetVideoPresenter(var mVideoPlayerView: IVideoPlayerView) : BasePresenter(), IGetVideoPresenter {
+class GetVideoPresenter(var mVideoPlayerView: IVideoPlayerView) : BasePresenter(),
+    IGetVideoPresenter {
 
     private val movieService: IMovieService = RestClient.getMovieService()
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()

@@ -9,4 +9,13 @@ object Constant {
 
     const val intentDetailMovie = "ID_MOVIE"
     const val intentPlayVideo = "PLAY_VIDEO"
+
+    const val nodeUser = "User"
+    const val nodeWatchlist = "Watchlist"
+    const val nodeFullName = "fullName"
+
+    const val loginSuccess = "Login Success"
+    const val loginFail = "Login Fail"
+    const val registerSuccess = "Register Success"
+    const val registerFail = "Register Fail"
 }

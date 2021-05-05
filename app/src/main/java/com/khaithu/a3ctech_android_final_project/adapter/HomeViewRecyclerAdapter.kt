@@ -11,15 +11,11 @@ import com.khaithu.a3ctech_android_final_project.helper.Constant
 import com.khaithu.a3ctech_android_final_project.helper.GlideHelper
 import kotlinx.android.synthetic.main.item_movies.view.*
 
-class HomePageRecyclerAdapter(var mHandleEvent: IHandleEvent) :
-    RecyclerView.Adapter<HomePageRecyclerAdapter.ViewHolder>() {
+class HomeViewRecyclerAdapter :
+    RecyclerView.Adapter<HomeViewRecyclerAdapter.ViewHolder>() {
 
+    private lateinit var mHandleEvent: IHandleEvent
     private var lists: List<ResultMovie> = emptyList()
-
-    fun updateData(movies: List<ResultMovie>) {
-        lists = movies
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -35,6 +31,15 @@ class HomePageRecyclerAdapter(var mHandleEvent: IHandleEvent) :
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(lists[position])
+    }
+
+    fun updateData(movies: List<ResultMovie>) {
+        lists = movies
+        notifyDataSetChanged()
+    }
+
+    fun initEvent(handlerEvent: IHandleEvent) {
+        this.mHandleEvent = handlerEvent
     }
 
     class ViewHolder(itemView: View, var mHandleEvent: IHandleEvent) :

@@ -20,4 +20,14 @@ class MySharedPreference(var context: Context) {
     fun getStringValue(key: String): String? {
         return sharedPreference.getString(key, "")
     }
+
+    fun putBooleanValue(key: String, value: Boolean) {
+        val editor: SharedPreferences.Editor = sharedPreference.edit()
+        editor.putBoolean(key, value)
+        editor.apply()
+    }
+
+    fun getBooleanValue(key: String): Boolean {
+        return sharedPreference.getBoolean(key, false)
+    }
 }
