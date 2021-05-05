@@ -8,6 +8,7 @@ import com.khaithu.a3ctech_android_final_project.model.enum.LanguageEnum
 import com.khaithu.a3ctech_android_final_project.presenter.interfacePre.IGetMoviePresenter
 import com.khaithu.a3ctech_android_final_project.service.IMovieService
 import com.khaithu.a3ctech_android_final_project.helper.Constant
+import com.khaithu.a3ctech_android_final_project.sharedprefences.DataLocalManager
 import com.khaithu.a3ctech_android_final_project.view.interfaceView.IHomeView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -25,8 +26,7 @@ class GetMoviePresenter(var iHomeView: IHomeView) : BasePresenter(), IGetMoviePr
         val call: Observable<PageMovie> = movieService.getMovies(
             Constant.popular,
             BuildConfig.TMDBApiKey,
-            // TODO add feature language later.
-            LanguageEnum.ENGLISH.value,
+            DataLocalManager.getLanguage(),
             1
         )
         call.subscribeOn(Schedulers.io())
@@ -56,4 +56,3 @@ class GetMoviePresenter(var iHomeView: IHomeView) : BasePresenter(), IGetMoviePr
         compositeDisposable.dispose()
     }
 }
-

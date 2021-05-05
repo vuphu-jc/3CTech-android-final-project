@@ -1,6 +1,8 @@
 package com.khaithu.a3ctech_android_final_project.view
 
 
+import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +13,8 @@ import com.khaithu.a3ctech_android_final_project.model.MovieDetail
 import com.khaithu.a3ctech_android_final_project.presenter.GetMovieDetailPresenter
 import com.khaithu.a3ctech_android_final_project.helper.Constant
 import com.khaithu.a3ctech_android_final_project.helper.GlideHelper
+import com.khaithu.a3ctech_android_final_project.sharedprefences.DataLocalManager
+import com.khaithu.a3ctech_android_final_project.view.dialog.LoginDialog
 import com.khaithu.a3ctech_android_final_project.view.interfaceView.IMovieDetailView
 import com.khaithu.a3ctech_android_final_project.view.navigator.MovieDetailNavigator
 import kotlinx.android.synthetic.main.activity_movie_detail.*
@@ -19,12 +23,11 @@ class MovieDetailActivity : AppCompatActivity(), IMovieDetailView {
 
     private val mPresenter: GetMovieDetailPresenter =
         GetMovieDetailPresenter(this)
-    private val mMovieDetailNavigator: MovieDetailNavigator = MovieDetailNavigator(this)
+    private val mMovieDetailNavigator : MovieDetailNavigator = MovieDetailNavigator(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
-
         val id: Int = intent.getIntExtra(Constant.intentDetailMovie, 0)
         mPresenter.getMovieDetail(id)
     }
@@ -52,7 +55,21 @@ class MovieDetailActivity : AppCompatActivity(), IMovieDetailView {
         handleDisplayTagline(movieDetail)
 
         overview.text = movieDetail.overview
+
+        addToWatchList(movieDetail)
     }
+
+    private fun addToWatchList(movieDetail: MovieDetail) {
+        buttonAddList.setOnClickListener(View.OnClickListener {
+            if (DataLocalManager.getLoginStatus()) {
+                mPresenter.addToWatchlist(movieDetail)
+                buttonAddList.setBackgroundColor(Color.GRAY)
+            } else {
+                mMovieDetailNavigator.goToLoginDialog()
+            }
+        })
+    }
+
 
     private fun handleDisplayImage(movieDetail: MovieDetail) {
         GlideHelper.loadImage(this, Constant.posterBaseUrl + movieDetail.posterPath, posterMovie)
@@ -80,7 +97,7 @@ class MovieDetailActivity : AppCompatActivity(), IMovieDetailView {
     private fun handleDisplayTrailer(movieDetail: MovieDetail) {
         if (!movieDetail.video) {
             trailer.setOnClickListener(View.OnClickListener {
-                mMovieDetailNavigator.goToVideoPlayerView(movieDetail.id)
+               mMovieDetailNavigator.goToVideoPlayerView(movieDetail.id)
             })
         } else {
             trailer.gone()

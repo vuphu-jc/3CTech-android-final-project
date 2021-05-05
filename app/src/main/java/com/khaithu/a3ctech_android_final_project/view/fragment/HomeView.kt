@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.khaithu.a3ctech_android_final_project.R
-import com.khaithu.a3ctech_android_final_project.adapter.HomePageRecyclerAdapter
+import com.khaithu.a3ctech_android_final_project.adapter.HomeViewRecyclerAdapter
 import com.khaithu.a3ctech_android_final_project.adapter.SliderAdapter
 import com.khaithu.a3ctech_android_final_project.adapter.interfaceadapter.IHandleEvent
 import com.khaithu.a3ctech_android_final_project.helper.Constant
@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_homepage.view.*
 
 class HomeView : Fragment(), IHomeView, IHandleEvent {
     private lateinit var mView: View
-    private lateinit var mHomeAdapter: HomePageRecyclerAdapter
+    private lateinit var mHomeAdapter: HomeViewRecyclerAdapter
     private var mPresenter: GetMoviePresenter = GetMoviePresenter(this)
     private var mHomeViewNavigator = HomeViewNavigator(this)
 
@@ -76,7 +76,8 @@ class HomeView : Fragment(), IHomeView, IHandleEvent {
     }
 
     private fun createRecyclerView(view: View) {
-        mHomeAdapter = HomePageRecyclerAdapter(this)
+        mHomeAdapter = HomeViewRecyclerAdapter()
+        mHomeAdapter.initEvent(this)
         view.recyclerView.adapter = mHomeAdapter
         view.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

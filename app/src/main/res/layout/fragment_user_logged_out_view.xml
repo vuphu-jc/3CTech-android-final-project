@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.UserLoggedOutView">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+      <androidx.appcompat.widget.Toolbar
+          android:id="@+id/toolBar"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dp_60"
+          android:background="@color/black_blue"
+          app:title="@string/login"
+          app:titleTextColor="@color/white"
+          app:navigationIcon="@drawable/ic_user"
+          app:menu="@menu/item_setting"/>
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/dp_10"
+          android:text="@string/get_personalized_recommendations_and_keep_track_of_what_to_watch"/>
+
+      <Button
+          android:layout_margin="@dimen/dp_10"
+          android:id="@+id/buttonSignInSignOut"
+          android:text="@string/button_login"
+          android:backgroundTint="@color/light_green"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+   </LinearLayout>
+
+</FrameLayout>
