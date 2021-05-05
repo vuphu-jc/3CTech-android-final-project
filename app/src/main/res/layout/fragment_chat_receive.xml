@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/tvAvatarReceive"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_margin="@dimen/dp_8"
+        android:src="@drawable/ic_baseline_person_24"
+        app:civ_border_color="@android:color/darker_gray"
+        app:civ_border_width="@dimen/dp_1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTextReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_46"
+            android:background="@drawable/round_chat_receive"
+            android:padding="@dimen/dp_8"
+            android:textSize="@dimen/sp_18"
+            android:layout_marginEnd="@dimen/dp_46" />
+
+        <TextView
+            android:id="@+id/tvTimeReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:textColor="@color/green_time"
+            android:textSize="@dimen/sp_16"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/dp_8" />
+
+    </LinearLayout>
+
+</LinearLayout>
