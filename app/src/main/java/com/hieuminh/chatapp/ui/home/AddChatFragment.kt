@@ -16,18 +16,21 @@ import com.hieuminh.chatapp.presenter.impl.AddChatPresenterImpl
 import com.hieuminh.chatapp.ui.navigator.AddChatNavigator
 import com.hieuminh.chatapp.ui.navigator.Impl.AddChatNavigatorImpl
 import kotlinx.android.synthetic.main.fragment_add_chat.*
+import kotlinx.android.synthetic.main.fragment_add_chat.view.*
 
 class AddChatFragment : Fragment(), AddChatContract.View {
 
     private lateinit var mAddChatNavigator: AddChatNavigator
     private lateinit var mAddChatPresenter: AddChatContract.Presenter
     private var userProfile: UserProfileModel? = null
+    private lateinit var mView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_add_chat, container, false)
+        mView = inflater.inflate(R.layout.fragment_add_chat, container, false)
+        return mView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,13 +52,13 @@ class AddChatFragment : Fragment(), AddChatContract.View {
 
     override fun onSearchSuccess(userProfile: UserProfileModel?) {
         this.userProfile = userProfile
-        llSearchSuccess.visibility = VISIBLE
-        tvEmail.text = userProfile?.email
-        tvName.text = userProfile?.name
+        mView.llSearchSuccess.visibility = VISIBLE
+        mView.tvEmail.text = userProfile?.email
+        mView.tvName.text = userProfile?.name
     }
 
     override fun onSearchNotFound() {
-        llSearchNotFound.visibility = VISIBLE
+        mView.llSearchNotFound.visibility = VISIBLE
     }
 
     override fun onSearchFailure(message: String) {
@@ -77,15 +80,13 @@ class AddChatFragment : Fragment(), AddChatContract.View {
     }
 
     override fun onStartProcessBar() {
-        if (llSearchNotFound.visibility != GONE)
-            llSearchNotFound.visibility = GONE
-        if (llSearchSuccess.visibility != GONE)
-            llSearchSuccess.visibility = GONE
-        processBar.visibility = VISIBLE
+        mView.llSearchNotFound.visibility = GONE
+        mView.llSearchSuccess.visibility = GONE
+        mView.processBar.visibility = VISIBLE
     }
 
     override fun onStopProcessBar() {
-        processBar.visibility = GONE
+        mView.processBar.visibility = GONE
     }
 
     override fun onAddChatFailureDueToUserExistedAndTransferToChatDetail(chatId: String) {
@@ -97,18 +98,17 @@ class AddChatFragment : Fragment(), AddChatContract.View {
         mAddChatNavigator.startChatDetailFragment(chatId)
     }
 
-    private fun onReturnHomeListener() = View.OnClickListener { mAddChatNavigator.returnHomeFragment() }
+    private fun onReturnHomeListener() =
+        View.OnClickListener { mAddChatNavigator.returnHomeFragment() }
 
     private fun onHandleSearchEmailListener() = View.OnClickListener {
         mAddChatPresenter.search(
-            etAddChat.text.toString().trim()
+            mView.etAddChat.text.toString().trim()
         )
     }
 
     private fun onHandleAddChatListener() =
-        View.OnClickListener {
-            mAddChatPresenter.addChat(userProfile)
-        }
+        View.OnClickListener { mAddChatPresenter.addChat(userProfile) }
 
     private fun init(view: View) {
         mAddChatNavigator = AddChatNavigatorImpl(view)

@@ -13,5 +13,10 @@ object Constant {
         const val USER_PROFILE = "userProfile"
         const val EMAIL = "email"
         const val ID = "id"
+        const val MESSAGES = "messages"
+    }
+
+    object TimeFormat {
+        const val DATE_FORMAT = "yyyy-MM-dd HH:mm"
     }
 }

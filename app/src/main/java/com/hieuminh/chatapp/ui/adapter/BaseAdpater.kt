@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder> : RecyclerView.Adapter<VH>()   {
 
-    val mDataList : MutableList<T> = ArrayList()
+    var mDataList : MutableList<T> = ArrayList()
 
     override fun getItemCount(): Int = mDataList.size
 

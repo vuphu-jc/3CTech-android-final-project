@@ -15,5 +15,6 @@
     <color name="btn_login_enable">#FFFFFF</color>
     <color name="btn_login_unable">#AEAAAA</color>
     <color name="colorTimeItem">#423315</color>
+    <color name="green_time">#9AAE52</color>
     <color name="red">#E80808</color>
 </resources>

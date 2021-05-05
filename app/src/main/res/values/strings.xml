@@ -33,6 +33,8 @@
     <string name="user_is_not_exist">User is not exist!</string>
     <string name="you">You: </string>
     <string name="blank">: </string>
+    <string name="message">Message...</string>
+    <string name="have_occured_error_with_this_item">have occured error with this item</string>
     <string name="connect_success">Connect success!</string>
     <string name="texting_youself_is_not_available">You cannot message yourself now, please try again later!</string>
     <string name="this_user_is_connected_before">This user is connected before!</string>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="vertical"
+        tools:ignore="InefficientWeight,RtlHardcoded">
+
+        <TextView
+            android:id="@+id/tvTextSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_46"
+            android:background="@drawable/round_chat_send"
+            android:padding="@dimen/dp_8"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18" />
+
+        <TextView
+            android:id="@+id/tvTimeSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_8"
+            android:textColor="@color/green_time"
+            android:textSize="@dimen/sp_16"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/tvAvatarSend"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_margin="@dimen/dp_8"
+        android:src="@drawable/ic_baseline_person_24"
+        app:civ_border_color="@android:color/darker_gray"
+        app:civ_border_width="@dimen/dp_1" />
+
+</LinearLayout>

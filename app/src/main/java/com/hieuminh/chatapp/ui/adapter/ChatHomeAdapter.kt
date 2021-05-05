@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.hieuminh.chatapp.R
 import com.hieuminh.chatapp.model.MessageModel
+import com.hieuminh.chatapp.model.UserModel
 import com.hieuminh.chatapp.model.WordModel
 import com.hieuminh.chatapp.utils.lastName
+import com.hieuminh.chatapp.utils.toStr
 import kotlinx.android.synthetic.main.fragment_message_item.view.*
 
 class ChatHomeAdapter() :
@@ -44,16 +46,23 @@ class ChatHomeAdapter() :
         }
 
         fun bind(messageModel: MessageModel) {
-            val user =
-                if (mAuth.uid == messageModel.firstUser?.id) messageModel.firstUser else messageModel.secondUser
-            view.tvNameItem.text = user?.name
-            val lastWord: WordModel? = messageModel.messages?.last()
+            val ownerUser: UserModel?
+            val partnerUser: UserModel?
+            if (mAuth.uid == messageModel.firstUser?.id) {
+                ownerUser = messageModel.firstUser
+                partnerUser = messageModel.secondUser
+            } else {
+                ownerUser = messageModel.secondUser
+                partnerUser = messageModel.firstUser
+            }
+            view.tvNameItem.text = partnerUser?.name
+            val lastWord: WordModel? = messageModel.messages?.first()
             val lastWordText =
-                if (lastWord?.type == user?.type) mContext.getString(R.string.you) + lastWord?.content
-                else user?.name?.lastName() + mContext.getString(R.string.blank) + lastWord?.content
+                if (lastWord?.type == ownerUser?.type) mContext.getString(R.string.you) + lastWord?.content
+                else partnerUser?.name?.lastName() + mContext.getString(R.string.blank) + lastWord?.content
 
             view.tvLastWordItem.text = lastWordText
-            view.tvLastTimeItem.text = lastWord?.time
+            view.tvLastTimeItem.text = lastWord?.time?.toStr()
         }
 
         private fun handleEvents() {
