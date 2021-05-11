@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="HaNoi_lon">105.8412</string>
+    <string name="HaNoi_lat">21.0245</string>
+    <string name="DaNang_lon">108.2208</string>
+    <string name="DaNang_lat">16.0678</string>
+    <string name="HoChiMinh_lon">106.6667</string>
+    <string name="HoChiMinh_lat">10.8333</string>
+</resources>
