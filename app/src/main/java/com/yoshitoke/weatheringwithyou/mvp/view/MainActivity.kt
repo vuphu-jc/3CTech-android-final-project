@@ -9,26 +9,25 @@ import com.yoshitoke.weatheringwithyou.R
 import com.yoshitoke.weatheringwithyou.mvp.Contract
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
 import com.yoshitoke.weatheringwithyou.mvp.model.Model
-import com.yoshitoke.weatheringwithyou.mvp.presenter.Presenter
+import com.yoshitoke.weatheringwithyou.mvp.presenter.MainPresenter
 import com.yoshitoke.weatheringwithyou.utils.kelvinToCelsius
-import com.yoshitoke.weatheringwithyou.utils.unixTimestampToDateTimeString
+import com.yoshitoke.weatheringwithyou.utils.unixTimestampToString
 import kotlinx.android.synthetic.main.current_conditions_layout.*
 import kotlinx.android.synthetic.main.location_picking_layout.*
 
 class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelectedListener {
-    var presenter: Contract.Presenter? = null
+    var mPresenter: Contract.Presenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mPresenter = MainPresenter(this, Model(), applicationContext)
 
-        presenter = Presenter(this, Model(applicationContext))
-
-        presenter?.loadCityList()
+        mPresenter?.loadCityList()
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-        presenter?.onLocationSwitched(pos)
+        mPresenter?.onLocationSwitched(pos)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
@@ -43,10 +42,15 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
     }
 
     override fun showWeatherInfo(data: WeatherInfo) {
-        val tempText = data.current.temp.kelvinToCelsius().toString() + "°C"
+        val tempText = data.current.temperature.kelvinToCelsius().toString() + "°C"
         tv_temperature.setText(tempText)
 
-        tv_condition.setText(data.current.weather[0].description)
-        tv_dateTime.setText(data.current.dt.unixTimestampToDateTimeString())
+        tv_condition.setText(data.current.weathers[0].description)
+        tv_dateTime.setText(data.current.dateTime.unixTimestampToString("dd MMM, yyyy - hh:mm a"))
+    }
+
+    override fun onDestroy() {
+        mPresenter?.destroyView()
+        super.onDestroy()
     }
 }

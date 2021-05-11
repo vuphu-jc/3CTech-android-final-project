@@ -14,28 +14,9 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
-const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 const val GET = "onecall?exclude=hourly,daily&appid=9c1bdf56a58934c804d690c1d30f7714"
 
 interface WeatherAPI {
-
     @GET(GET)
     fun getWeatherInfo(@Query("lat") cityLon : String, @Query("lon") cityLat : String) : Observable<WeatherInfo>
-
-    companion object {
-        private val logging: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        private val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(logging).build()
-
-
-        fun create(): WeatherAPI {
-            val retrofit = Retrofit.Builder()
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BASE_URL)
-                    .client(client)
-                    .build()
-
-            return retrofit.create(WeatherAPI::class.java)
-        }
-    }
 }

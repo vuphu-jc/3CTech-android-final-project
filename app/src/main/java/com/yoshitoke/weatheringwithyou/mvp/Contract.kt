@@ -25,10 +25,6 @@ interface Contract {
             fun onError(error: String?)
         }
 
-        fun getCityList(onCityListFinishedListener: OnCityListFinishedListener, onFetchErrorListener: OnFetchErrorListener)
-
-        fun getWeatherInfo(onWeatherFinishedListener: OnWeatherFinishedListener, onFetchErrorListener: OnFetchErrorListener, cityListPosition: Int)
-
     }
 
     interface Presenter {
@@ -36,6 +32,8 @@ interface Contract {
         fun loadCityList()
 
         fun onLocationSwitched(listPosition: Int)
+
+        fun destroyView()
 
     }
 }

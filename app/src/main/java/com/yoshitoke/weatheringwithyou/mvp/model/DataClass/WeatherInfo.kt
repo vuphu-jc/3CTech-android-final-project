@@ -10,11 +10,11 @@ data class WeatherInfo(
 
 data class Current(
     @SerializedName("dt")
-    val dt: Int,
+    val dateTime: Int,
     @SerializedName("temp")
-    val temp: Double,
+    val temperature: Double,
     @SerializedName("weather")
-    val weather: List<Weather> = listOf()
+    val weathers: List<Weather> = listOf()
 )
 
 data class Weather(
