@@ -6,20 +6,16 @@ import com.google.gson.Gson
 import com.yoshitoke.weatheringwithyou.mvp.Contract
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.City
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
-import com.yoshitoke.weatheringwithyou.mvp.model.Model
+import com.yoshitoke.weatheringwithyou.utils.AssetsLoader
 import com.yoshitoke.weatheringwithyou.utils.network.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.json.JSONException
-import java.io.IOException
-import java.nio.charset.Charset
 
 class MainPresenter(
         private var mainView: Contract.View?,
-        private val model: Contract.Model,
-        private val context: Context) : Contract.Presenter,
-        Contract.Model.OnWeatherFinishedListener, Contract.Model.OnFetchErrorListener, Contract.Model.OnCityListFinishedListener {
+        private val context: Context) : Contract.Presenter {
 
     companion object {
         private var disposable: Disposable? = null
@@ -28,7 +24,7 @@ class MainPresenter(
 
     override fun loadCityList() {
         try {
-            val json = loadJSONFromAsset("city_list.json")
+            val json = AssetsLoader.loadJSONFromAsset(context, "city_list.json")
             val gson = Gson()
             cityList = gson.fromJson(json , Array<City>::class.java).toList()
             val cityListName: ArrayList<String> = ArrayList()
@@ -37,7 +33,7 @@ class MainPresenter(
                 cityListName.add(cityList[i].name)
             }
 
-            onFinished(cityListName)
+            onCityListResponse(cityListName)
         }
         catch (e: JSONException) {
             e.printStackTrace()
@@ -45,7 +41,7 @@ class MainPresenter(
         }
     }
 
-    override fun onFinished(cityListName: List<String>) {
+    private fun onCityListResponse(cityListName: List<String>) {
         mainView?.showSpinnerList(cityListName)
     }
 
@@ -54,37 +50,20 @@ class MainPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        {result -> onFinished(result)},
+                        {result -> onWeatherResponse(result)},
                         {error -> onError(error.message)}
                 )
     }
 
-    override fun onFinished(data: WeatherInfo?) {
+    private fun onWeatherResponse(data: WeatherInfo?) {
         mainView?.showWeatherInfo(data!!)
     }
 
-    override fun onError(error: String?) {
+    private fun onError(error: String?) {
+        Log.d("responseErr", error.toString())
     }
 
-    override fun destroyView() {
+    override fun destroy() {
         mainView = null
-    }
-
-    private fun loadJSONFromAsset(fileName: String): String {
-        val json: String?
-        try {
-            val inputStream = context.assets.open(fileName)
-            val size = inputStream.available()
-            val buffer = ByteArray(size)
-            val charset: Charset = Charsets.UTF_8
-            inputStream.read(buffer)
-            inputStream.close()
-            json = String(buffer, charset)
-        }
-        catch (ex: IOException) {
-            ex.printStackTrace()
-            return ""
-        }
-        return json
     }
 }

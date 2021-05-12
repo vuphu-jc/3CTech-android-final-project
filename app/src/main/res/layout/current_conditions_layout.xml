@@ -6,18 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
         android:id="@+id/tv_temperature"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_100"
-        android:layout_marginTop="@dimen/dp_160"
-        android:textSize="@dimen/sp_40"
+        android:layout_marginTop="@dimen/dp_104"
         android:gravity="right"
+        android:textSize="@dimen/sp_40"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintHorizontal_bias="0.794"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/tv_dateTime"
@@ -34,10 +34,10 @@
         android:id="@+id/tv_condition"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_80"
-        android:layout_marginTop="@dimen/dp_168"
+        android:layout_marginTop="@dimen/dp_124"
         android:textSize="@dimen/sp_20"
         app:layout_constraintEnd_toStartOf="@+id/tv_temperature"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

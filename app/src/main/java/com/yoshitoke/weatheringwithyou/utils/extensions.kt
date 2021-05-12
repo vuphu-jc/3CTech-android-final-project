@@ -1,6 +1,8 @@
 package com.yoshitoke.weatheringwithyou.utils
 
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 fun Int.unixTimestampToString(format: String) : String {
@@ -22,6 +24,9 @@ fun Int.unixTimestampToString(format: String) : String {
 
 
 fun Double.kelvinToCelsius() : Int {
-
     return (this - 273.15).toInt()
+}
+
+fun Int.toCelsiusString() : String {
+    return "$this°C"
 }

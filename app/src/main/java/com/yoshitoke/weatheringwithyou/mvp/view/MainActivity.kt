@@ -5,23 +5,28 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yoshitoke.weatheringwithyou.R
 import com.yoshitoke.weatheringwithyou.mvp.Contract
-import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
-import com.yoshitoke.weatheringwithyou.mvp.model.Model
+import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.*
 import com.yoshitoke.weatheringwithyou.mvp.presenter.MainPresenter
 import com.yoshitoke.weatheringwithyou.utils.kelvinToCelsius
+import com.yoshitoke.weatheringwithyou.utils.toCelsiusString
 import com.yoshitoke.weatheringwithyou.utils.unixTimestampToString
 import kotlinx.android.synthetic.main.current_conditions_layout.*
+import kotlinx.android.synthetic.main.forecast_timeline_layout.*
 import kotlinx.android.synthetic.main.location_picking_layout.*
 
 class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelectedListener {
     var mPresenter: Contract.Presenter? = null
+    private lateinit var mAdapter: TimeLineAdapter
+    private lateinit var mLayoutManager: LinearLayoutManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mPresenter = MainPresenter(this, Model(), applicationContext)
+        mPresenter = MainPresenter(this, applicationContext)
 
         mPresenter?.loadCityList()
     }
@@ -42,15 +47,26 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
     }
 
     override fun showWeatherInfo(data: WeatherInfo) {
-        val tempText = data.current.temperature.kelvinToCelsius().toString() + "°C"
+        val tempText = data.current.temperature.kelvinToCelsius().toCelsiusString()
         tv_temperature.setText(tempText)
 
+        val datetimeFormat = "dd MMM, yyyy - hh:mm a"
+        tv_dateTime.setText(data.current.dateTime.unixTimestampToString(datetimeFormat))
         tv_condition.setText(data.current.weathers[0].description)
-        tv_dateTime.setText(data.current.dateTime.unixTimestampToString("dd MMM, yyyy - hh:mm a"))
+
+        showHourlyForecast(data.hours)
+    }
+
+    private fun showHourlyForecast(data: List<Hourly>) {
+        mLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager = mLayoutManager
+        mAdapter = TimeLineAdapter(data)
+        recyclerView.adapter = mAdapter
     }
 
     override fun onDestroy() {
-        mPresenter?.destroyView()
+        mPresenter?.destroy()
         super.onDestroy()
     }
 }
+

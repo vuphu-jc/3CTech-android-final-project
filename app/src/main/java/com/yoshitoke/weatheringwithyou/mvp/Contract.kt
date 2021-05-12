@@ -11,29 +11,16 @@ interface Contract {
 
     }
 
-    interface Model {
-
-        interface OnWeatherFinishedListener {
-            fun onFinished(data: WeatherInfo?)
-        }
-
-        interface OnCityListFinishedListener {
-            fun onFinished(cityListName: List<String>)
-        }
-
-        interface OnFetchErrorListener {
-            fun onError(error: String?)
-        }
-
+    interface BasePresenter {
+        fun destroy()
     }
 
-    interface Presenter {
+    interface Presenter: BasePresenter {
 
         fun loadCityList()
 
         fun onLocationSwitched(listPosition: Int)
 
-        fun destroyView()
-
     }
 }
+
