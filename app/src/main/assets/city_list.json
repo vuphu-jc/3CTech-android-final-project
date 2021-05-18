@@ -1,33 +1,33 @@
 [
   {
     "name":"Da Nang",
-    "lattitude": 16.0678,
+    "latitude": 16.0678,
     "longitude": 108.2208
   },
   {
     "name":"Hue",
-    "lattitude": 16.4667,
+    "latitude": 16.4667,
     "longitude": 107.6
   },
   {
     "name":"Nha Trang",
-    "lattitude": 12.25,
+    "latitude": 12.25,
     "longitude": 109.1833
   },
   {
     "name":"Da Lat",
-    "lattitude": 16.0678,
+    "latitude": 16.0678,
     "longitude": 108.2208
   },
   {
     "name":"Ha Noi",
-    "lattitude": 21.0245,
+    "latitude": 21.0245,
     "longitude": 105.8412
 
   },
   {
     "name":"Ho Chi Minh",
-    "lattitude": 10.75,
+    "latitude": 10.75,
     "longitude": 106.6667
   }
 ]

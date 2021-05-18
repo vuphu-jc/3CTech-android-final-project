@@ -1,9 +1,11 @@
 package com.yoshitoke.weatheringwithyou.mvp.presenter
 
+import android.content.ContentValues
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.yoshitoke.weatheringwithyou.mvp.Contract
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.City
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
 import com.yoshitoke.weatheringwithyou.utils.AssetsLoader
@@ -19,34 +21,40 @@ class MainPresenter(
 
     companion object {
         private var disposable: Disposable? = null
-        private var cityList: List<City> = listOf()
+        private lateinit var cityList: List<City>
+        private lateinit var weatherInfo: WeatherInfo
     }
 
     override fun loadCityList() {
-        try {
-            val json = AssetsLoader.loadJSONFromAsset(context, "city_list.json")
-            val gson = Gson()
-            cityList = gson.fromJson(json , Array<City>::class.java).toList()
-            val cityListName: ArrayList<String> = ArrayList()
+        val cityDB = CityDatabaseHandler(context)
+        cityList = cityDB.FetchCities("%") // fetch all
 
-            for (i in 0 until cityList.size) {
-                cityListName.add(cityList[i].name)
+        if (cityList.isEmpty()) {
+            try {
+                val json = AssetsLoader.loadJSONFromAsset(context, "city_list.json")
+                val gson = Gson()
+                cityList = gson.fromJson(json , Array<City>::class.java).toList()
+
+                cityList.forEach{
+                    val values = ContentValues()
+                    values.put("name", it.name)
+                    values.put("latitude", it.latitude)
+                    values.put("longitude", it.longitude)
+
+                    cityDB.AddCity(values)
+                }
             }
+            catch (e: JSONException) {
+                e.printStackTrace()
+                onError(e.toString())
+            }
+        }
 
-            onCityListResponse(cityListName)
-        }
-        catch (e: JSONException) {
-            e.printStackTrace()
-            onError(e.toString())
-        }
+        onCityListResponse(cityList)
     }
 
-    private fun onCityListResponse(cityListName: List<String>) {
-        mainView?.showSpinnerList(cityListName)
-    }
-
-    override fun onLocationSwitched(listPosition: Int) {
-        disposable = RetrofitClient.weatherService.getWeatherInfo(cityList[listPosition].lattitude.toString(), cityList[listPosition].longitude.toString())
+    override fun switchLocation(listPosition: Int) {
+        disposable = RetrofitClient.weatherService.getWeatherInfo(cityList[listPosition].latitude.toString(), cityList[listPosition].longitude.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -55,15 +63,25 @@ class MainPresenter(
                 )
     }
 
-    private fun onWeatherResponse(data: WeatherInfo?) {
-        mainView?.showWeatherInfo(data!!)
-    }
-
-    private fun onError(error: String?) {
-        Log.d("responseErr", error.toString())
+    override fun getWeatherLocalData(): WeatherInfo? {
+        return weatherInfo
     }
 
     override fun destroy() {
         mainView = null
+        disposable?.dispose()
+    }
+
+    private fun onCityListResponse(cityList: List<City>) {
+        mainView?.showSpinnerList(cityList)
+    }
+
+    private fun onWeatherResponse(data: WeatherInfo?) {
+        mainView?.showWeatherInfo(data!!)
+        weatherInfo = data!!
+    }
+
+    private fun onError(error: String?) {
+        Log.d("responseErr", error.toString())
     }
 }

@@ -30,3 +30,11 @@ fun Double.kelvinToCelsius() : Int {
 fun Int.toCelsiusString() : String {
     return "$this°C"
 }
+
+fun Int.toPercentageString() : String {
+    return "$this %"
+}
+
+fun Double.toVelocityString() : String {
+    return "$this m/s"
+}

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,11 +10,11 @@
         android:id="@+id/tv_temperature"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_100"
-        android:layout_marginTop="@dimen/dp_104"
+        android:layout_marginTop="140dp"
         android:gravity="right"
         android:textSize="@dimen/sp_40"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintHorizontal_bias="0.948"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,22 +22,20 @@
         android:id="@+id/tv_dateTime"
         android:layout_width="@dimen/dp_200"
         android:layout_height="@dimen/dp_50"
-        android:layout_marginTop="@dimen/dp_4"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:layout_marginRight="@dimen/dp_16"
         android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toTopOf="@+id/tv_temperature"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_temperature" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tv_condition"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_80"
-        android:layout_marginTop="@dimen/dp_124"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:textSize="@dimen/sp_20"
-        app:layout_constraintEnd_toStartOf="@+id/tv_temperature"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_temperature" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

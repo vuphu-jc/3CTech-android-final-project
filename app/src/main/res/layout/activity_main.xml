@@ -6,9 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".mvp.view.MainActivity">
 
-    <include layout="@layout/current_conditions_layout" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/current_conditions_layout" />
     <include layout="@layout/location_picking_layout" />
 
-    <include layout="@layout/forecast_timeline_layout" />
+    <include android:id="@+id/hourly_forecast_layout"
+        layout="@layout/hourly_forecast_layout" />
+
+    <include
+        android:id="@+id/bottom_tabs"
+        layout="@layout/bottom_tabs_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_400"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/tabsOpenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="More"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="@dimen/dp_300"
-        android:layout_height="@dimen/dp_400"
-        android:layout_marginStart="@dimen/dp_50"
-        android:layout_marginLeft="@dimen/dp_50"
-        android:layout_marginTop="@dimen/dp_250"
+        android:layout_height="@dimen/dp_600"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:linePadding="32dp"
+        app:lineStyle="dash"
+        app:lineStyleDashGap="32dp"
+        app:lineStyleDashLength="@dimen/dp_64"
+        app:markerPaddingBottom="32dp"
+        app:markerPaddingTop="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

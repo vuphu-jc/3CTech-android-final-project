@@ -21,4 +21,10 @@
     <dimen name="dp_250">250dp</dimen>
     <dimen name="dp_36">36dp</dimen>
     <dimen name="dp_76">76dp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="dp_500">500dp</dimen>
+    <dimen name="dp_600">600dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_88">88dp</dimen>
+    <dimen name="dp_128">128dp</dimen>
 </resources>

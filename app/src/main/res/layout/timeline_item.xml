@@ -3,37 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_100">
+    android:layout_height="@dimen/dp_200">
+
 
     <TextView
         android:id="@+id/text_timeline_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_36"
+        android:layout_marginTop="@dimen/dp_88"
         android:text="TextView"
         app:layout_constraintEnd_toStartOf="@+id/relativeLayout"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/text_timeline_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_24"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_4"
+        android:layout_marginLeft="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_80"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/relativeLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="@dimen/dp_64"
+        android:layout_width="@dimen/dp_128"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/dp_76"
-        android:layout_marginLeft="@dimen/dp_76"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -42,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            app:marker="@drawable/timeline_marker"
             app:markerSize="@dimen/dp_24" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -49,15 +50,16 @@
             android:layout_width="@dimen/dp_64"
             android:layout_height="@dimen/dp_64"
             android:layout_centerInParent="true"
-            app:civ_circle_background_color="@color/black" />
+            app:civ_circle_background_color="@color/gray_E0" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/text_timeline_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_24"
-        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/relativeLayout"
         app:layout_constraintTop_toBottomOf="@+id/text_timeline_title" />
