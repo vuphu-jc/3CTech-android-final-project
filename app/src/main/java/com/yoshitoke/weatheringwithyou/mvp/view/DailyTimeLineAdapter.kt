@@ -9,8 +9,9 @@ import com.github.vipulasri.timelineview.TimelineView
 import com.yoshitoke.weatheringwithyou.R
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.Daily
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.Hourly
+import com.yoshitoke.weatheringwithyou.utils.DateConstant.Companion.DATE_FORMAT
 import com.yoshitoke.weatheringwithyou.utils.kelvinToCelsius
-import com.yoshitoke.weatheringwithyou.utils.network.ICON_URL_POSTFIX
+import com.yoshitoke.weatheringwithyou.utils.network.ICON_URL_POSTFIX_2X
 import com.yoshitoke.weatheringwithyou.utils.network.ICON_URL_PREFIX
 import com.yoshitoke.weatheringwithyou.utils.toCelsiusString
 import com.yoshitoke.weatheringwithyou.utils.unixTimestampToString
@@ -34,20 +35,7 @@ class DailyTimeLineAdapter(private val mFeedList: List<Daily>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: TimeLineViewHolder, position: Int) {
-
-        val timeLineModel = mFeedList[position]
-        val url = ICON_URL_PREFIX + timeLineModel.weathers[0].iconName + ICON_URL_POSTFIX
-
-        Glide.with(holder.itemView.context)
-                .load(url)
-                .into(holder.image);
-
-        val timeFormat = "dd MMM"
-        holder.date.text = timeLineModel.dateTime.unixTimestampToString(timeFormat)
-        holder.message.text = timeLineModel.weathers[0].description
-
-        val tempText = timeLineModel.temperature.max.kelvinToCelsius().toCelsiusString() + " - " + timeLineModel.temperature.min.kelvinToCelsius().toCelsiusString()
-        holder.temp.text = tempText
+        holder.bind(mFeedList[position])
     }
 
     override fun getItemCount() = mFeedList.size
@@ -62,6 +50,20 @@ class DailyTimeLineAdapter(private val mFeedList: List<Daily>) : RecyclerView.Ad
 
         init {
             timeline.initLine(viewType)
+        }
+
+        fun bind(model: Daily) {
+            val url = ICON_URL_PREFIX + model.weathers[0].iconName + ICON_URL_POSTFIX_2X
+
+            Glide.with(itemView.context)
+                    .load(url)
+                    .into(image);
+
+            date.text = model.dateTime.unixTimestampToString(DATE_FORMAT)
+            message.text = model.weathers[0].description
+
+            val tempText = model.temperature.max.kelvinToCelsius().toCelsiusString() + " - " + model.temperature.min.kelvinToCelsius().toCelsiusString()
+            temp.text = tempText
         }
     }
 

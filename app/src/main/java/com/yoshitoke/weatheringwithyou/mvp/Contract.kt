@@ -19,7 +19,5 @@ interface Contract {
 
         fun switchLocation(listPosition: Int)
 
-        fun getWeatherLocalData() : WeatherInfo?
-
     }
 }

@@ -11,7 +11,8 @@ const val APP_ID = "9c1bdf56a58934c804d690c1d30f7714"
 const val GET_ONECALL_REQUEST = "onecall?appid=$APP_ID"
 
 const val ICON_URL_PREFIX = "http://openweathermap.org/img/wn/"
-const val ICON_URL_POSTFIX = "@2x.png"
+const val ICON_URL_POSTFIX_2X = "@2x.png"
+const val ICON_URL_POSTFIX_4X = "@4x.png"
 
 interface WeatherAPI {
     @GET(GET_ONECALL_REQUEST)

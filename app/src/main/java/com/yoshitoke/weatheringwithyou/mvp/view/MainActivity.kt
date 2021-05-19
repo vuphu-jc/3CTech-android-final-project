@@ -16,10 +16,14 @@ import com.google.gson.Gson
 import com.yoshitoke.weatheringwithyou.R
 import com.yoshitoke.weatheringwithyou.mvp.Contract
 import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.cityLat
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.cityLon
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.cityName
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.City
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.Hourly
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
 import com.yoshitoke.weatheringwithyou.mvp.presenter.MainPresenter
+import com.yoshitoke.weatheringwithyou.utils.DateConstant.Companion.DATE_TIME_FORMAT
 import com.yoshitoke.weatheringwithyou.utils.kelvinToCelsius
 import com.yoshitoke.weatheringwithyou.utils.toCelsiusString
 import com.yoshitoke.weatheringwithyou.utils.unixTimestampToString
@@ -36,7 +40,6 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
         var mPresenter: Contract.Presenter? = null
         private lateinit var mAdapter: HourlyTimeLineAdapter
         private lateinit var mLayoutManager: LinearLayoutManager
-        const val dateConstant = "dd MMM, yyyy - hh:mm a"
         private val REQUEST_CODE_MAPS = 0x9345
     }
 
@@ -70,7 +73,7 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
         val tempText = data.current.temperature.kelvinToCelsius().toCelsiusString()
         tv_temperature.setText(tempText)
 
-        tv_dateTime.setText(data.current.dateTime.unixTimestampToString(dateConstant))
+        tv_dateTime.setText(data.current.dateTime.unixTimestampToString(DATE_TIME_FORMAT))
         tv_condition.setText(data.current.weathers[0].description)
 
         showHourlyForecast(data.hours)
@@ -90,18 +93,17 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
                 val cityDB = CityDatabaseHandler(this)
 
                 val values = ContentValues()
-                values.put("name", cityObj.name)
-                values.put("latitude", cityObj.latitude)
-                values.put("longitude", cityObj.longitude)
+                values.put(cityName, cityObj.name)
+                values.put(cityLat, cityObj.latitude)
+                values.put(cityLon, cityObj.longitude)
 
                 cityDB.AddCity(values)
 
                 //reload list
                 mPresenter?.loadCityList()
 
-                Toast.makeText(this, "Result: $result", Toast.LENGTH_LONG).show()
             } else {
-                TODO("RESULT FAILED")
+                TODO("OTHER REQUEST")
             }
         }
     }
@@ -124,8 +126,8 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
 
         TabLayoutMediator(tab_layout, pager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Daily forecast"
-                1 -> tab.text = "Additional"
+                0 -> tab.text = getString(R.string.daily_forecast_tab)
+                1 -> tab.text = getString(R.string.additional_info_tab)
             }
         }.attach()
     }
@@ -133,20 +135,15 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
     private fun initMoreButtonListener() {
         tabsOpenBtn.setOnClickListener {
             if(bottom_tabs.visibility == View.GONE) {
-
-                val bottomUp: Animation = AnimationUtils.loadAnimation(this,
-                        R.anim.bottom_up)
-
-                bottom_tabs.startAnimation(bottomUp)
-                bottom_tabs.visibility = View.VISIBLE
+                bottom_tabs.apply {
+                    startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_up))
+                    visibility = View.VISIBLE
+                }
             } else {
-
-                val bottomDown: Animation = AnimationUtils.loadAnimation(this,
-                        R.anim.bottom_down)
-
-                bottom_tabs.startAnimation(bottomDown)
-                bottom_tabs.visibility = View.GONE
-
+                bottom_tabs.apply {
+                    startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_down))
+                    visibility = View.GONE
+                }
             }
         }
     }

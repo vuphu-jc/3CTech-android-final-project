@@ -22,7 +22,6 @@ class MainPresenter(
     companion object {
         private var disposable: Disposable? = null
         private lateinit var cityList: List<City>
-        private lateinit var weatherInfo: WeatherInfo
     }
 
     override fun loadCityList() {
@@ -63,10 +62,6 @@ class MainPresenter(
                 )
     }
 
-    override fun getWeatherLocalData(): WeatherInfo? {
-        return weatherInfo
-    }
-
     override fun destroy() {
         mainView = null
         disposable?.dispose()
@@ -76,9 +71,8 @@ class MainPresenter(
         mainView?.showSpinnerList(cityList)
     }
 
-    private fun onWeatherResponse(data: WeatherInfo?) {
-        mainView?.showWeatherInfo(data!!)
-        weatherInfo = data!!
+    private fun onWeatherResponse(data: WeatherInfo) {
+        mainView?.showWeatherInfo(data)
     }
 
     private fun onError(error: String?) {

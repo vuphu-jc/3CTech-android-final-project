@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">WeatheringWithYou</string>
+    <string name="map_choosed_place">Choosed Place</string>
+    <string name="daily_forecast_tab">DAILY FORECAST</string>
+    <string name="additional_info_tab">ADDITIONAL</string>
+    <string name="map_btn_text">Confirm</string>
+    <string name="tab_bottom_btn_text">More</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="uvIndex">UV Index</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="feels_like">Feels like</string>
 </resources>

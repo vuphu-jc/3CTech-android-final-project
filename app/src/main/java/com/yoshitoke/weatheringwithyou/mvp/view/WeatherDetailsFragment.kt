@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.yoshitoke.weatheringwithyou.R
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
 import com.yoshitoke.weatheringwithyou.utils.*
+import com.yoshitoke.weatheringwithyou.utils.DateConstant.Companion.HOUR_FORMAT
 import kotlinx.android.synthetic.main.fragment_weather_details.*
 
 class WeatherDetailsFragment : Fragment(){
@@ -45,10 +46,9 @@ class WeatherDetailsFragment : Fragment(){
 
     private fun showWeatherDetails() {
         val current = weatherInfo.current
-        val timeFormat = "hh:mm"
 
-        tv_sunrise.text = current.sunrise.unixTimestampToString(timeFormat)
-        tv_sunset.text = current.sunset.unixTimestampToString(timeFormat)
+        tv_sunrise.text = current.sunrise.unixTimestampToString(HOUR_FORMAT)
+        tv_sunset.text = current.sunset.unixTimestampToString(HOUR_FORMAT)
         tv_humidity.text = current.humidity.toPercentageString()
         tv_feels_like.text = current.temp_feels_like.kelvinToCelsius().toCelsiusString()
         tv_wind.text = current.windSpeed.toVelocityString()

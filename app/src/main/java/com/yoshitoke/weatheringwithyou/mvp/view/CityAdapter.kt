@@ -23,10 +23,10 @@ class CityAdapter(con: Context, arrList: List<City>): BaseAdapter() {
         this.list  = arrList
     }
 
-    override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+    override fun getView(id: Int, view: View?, viewGroup: ViewGroup?): View {
 
         val myView = myInflater!!.inflate(R.layout.simple_spinner_dropdown_item, null)
-        val cityObj = list[p0]
+        val cityObj = list[id]
 
         val full_name : String = cityObj.name
         val text1 = myView?.findViewById<CheckedTextView>(R.id.text_spinner)
@@ -34,12 +34,12 @@ class CityAdapter(con: Context, arrList: List<City>): BaseAdapter() {
         return myView
     }
 
-    override fun getItem(p0: Int): Any {
-        return list[p0]
+    override fun getItem(id: Int): Any {
+        return list[id]
     }
 
-    override fun getItemId(p0: Int): Long {
-        return p0.toLong()
+    override fun getItemId(id: Int): Long {
+        return id.toLong()
     }
 
     override fun getCount(): Int {

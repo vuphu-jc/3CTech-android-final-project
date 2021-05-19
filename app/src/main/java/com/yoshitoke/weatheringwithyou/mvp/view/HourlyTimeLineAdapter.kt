@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.vipulasri.timelineview.TimelineView
 import com.yoshitoke.weatheringwithyou.R
+import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.Daily
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.Hourly
+import com.yoshitoke.weatheringwithyou.utils.DateConstant
+import com.yoshitoke.weatheringwithyou.utils.DateConstant.Companion.HOUR_FORMAT
 import com.yoshitoke.weatheringwithyou.utils.kelvinToCelsius
-import com.yoshitoke.weatheringwithyou.utils.network.ICON_URL_POSTFIX
+import com.yoshitoke.weatheringwithyou.utils.network.ICON_URL_POSTFIX_2X
+import com.yoshitoke.weatheringwithyou.utils.network.ICON_URL_POSTFIX_4X
 import com.yoshitoke.weatheringwithyou.utils.network.ICON_URL_PREFIX
 import com.yoshitoke.weatheringwithyou.utils.toCelsiusString
 import com.yoshitoke.weatheringwithyou.utils.unixTimestampToString
@@ -33,28 +37,7 @@ class HourlyTimeLineAdapter(private val mFeedList: List<Hourly>) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: TimeLineViewHolder, position: Int) {
-
-        val timeLineModel = mFeedList[position]
-
-        val url = ICON_URL_PREFIX + timeLineModel.weathers[0].iconName + ICON_URL_POSTFIX
-        Glide.with(holder.itemView.context)
-                .load(url)
-                .into(holder.image);
-
-        val timeFormat = "hh:mm"
-        holder.date.text = timeLineModel.dateTime.unixTimestampToString(timeFormat)
-        holder.message.text = timeLineModel.weathers[0].description
-        holder.temp.text = timeLineModel.temperature.kelvinToCelsius().toCelsiusString()
-
-        if (position == 0) {
-            holder.image.requestLayout()
-            holder.image.layoutParams.height = 1000
-            holder.image.layoutParams.width = 1000
-            holder.date.visibility = View.GONE
-            holder.message.visibility = View.GONE
-            holder.temp.visibility = View.GONE
-        }
-
+        holder.bind(mFeedList[position], position == 0)
     }
 
     override fun getItemCount() = mFeedList.size
@@ -69,6 +52,32 @@ class HourlyTimeLineAdapter(private val mFeedList: List<Hourly>) : RecyclerView.
 
         init {
             timeline.initLine(viewType)
+        }
+
+        fun bind(model: Hourly, isFirstPosition: Boolean) {
+            val url: String
+
+            date.text = model.dateTime.unixTimestampToString(HOUR_FORMAT)
+            message.text = model.weathers[0].description
+            temp.text = model.temperature.kelvinToCelsius().toCelsiusString()
+
+            if (isFirstPosition) {
+                //double the image size
+                image.requestLayout()
+                image.layoutParams.height = image.layoutParams.height * 2
+                image.layoutParams.width = image.layoutParams.width * 2
+                url = ICON_URL_PREFIX + model.weathers[0].iconName + ICON_URL_POSTFIX_4X
+
+                date.visibility = View.GONE
+                message.visibility = View.GONE
+                temp.visibility = View.GONE
+            } else {
+                url = ICON_URL_PREFIX + model.weathers[0].iconName + ICON_URL_POSTFIX_2X
+            }
+
+            Glide.with(itemView.context)
+                    .load(url)
+                    .into(image);
         }
     }
 

@@ -24,8 +24,8 @@ class MapsMarkerActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.On
 
     companion object {
         var marker: Marker? = null
-        var mGoogleMap: GoogleMap? = null
-        var localCity: City? = null
+        private lateinit var mGoogleMap: GoogleMap
+        private lateinit var localCity: City
         const val CITY_DATA = "CITY_DATA"
     }
 
@@ -41,25 +41,24 @@ class MapsMarkerActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.On
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        val daNang = LatLng(16.0678, 108.2208)
+        val sampleCity = City("Da Nang", 108.2208, 16.0678)
         mGoogleMap = googleMap
         marker = googleMap.addMarker(
                 MarkerOptions()
-                        .position(daNang)
+                        .position(LatLng(sampleCity.latitude, sampleCity.longitude))
                         .title("Marker in Da Nang")
         )
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(daNang, 10F))
-        mGoogleMap?.setOnMapLongClickListener(this)
-
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(sampleCity.latitude, sampleCity.longitude), 10F))
+        mGoogleMap.setOnMapLongClickListener(this)
     }
 
     override fun onMapLongClick(p0: LatLng) {
         marker?.remove()
-        marker = mGoogleMap?.addMarker(
+        marker = mGoogleMap.addMarker(
                 MarkerOptions()
                         .position(p0)
-                        .title("Choosed Place")
+                        .title(getString(R.string.map_choosed_place))
                         .draggable(true)
         )
 

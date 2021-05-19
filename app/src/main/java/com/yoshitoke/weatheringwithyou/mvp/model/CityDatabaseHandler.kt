@@ -30,7 +30,7 @@ class CityDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DBName, 
         sqlObj = this.writableDatabase
     }
 
-    override fun onCreate(p0: SQLiteDatabase?) {
+    override fun onCreate(sqlite: SQLiteDatabase?) {
 
         //SQL for creating table
         val sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " +
@@ -38,13 +38,13 @@ class CityDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DBName, 
                 cityName + " TEXT, " + cityLat + " TEXT, " + cityLon +
                 " TEXT );"
 
-        p0!!.execSQL(sql1);
+        sqlite?.execSQL(sql1);
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
+    override fun onUpgrade(sqlite: SQLiteDatabase?, p1: Int, p2: Int) {
 
-        p0!!.execSQL("Drop table IF EXISTS " + tableName)
-        onCreate(p0)
+        sqlite?.execSQL("Drop table IF EXISTS " + tableName)
+        onCreate(sqlite)
 
     }
 
