@@ -9,16 +9,18 @@ import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import com.yoshitoke.weatheringwithyou.R
+import com.yoshitoke.weatheringwithyou.alarm.NotificationHelper
 import com.yoshitoke.weatheringwithyou.mvp.Contract
 import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler
-import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.cityLat
-import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.cityLon
-import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.cityName
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.CITY_LAT
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.CITY_LON
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.CITY_NAME
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.City
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.Hourly
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
@@ -49,9 +51,14 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
 
         initMoreButtonListener()
         mapIcon.setOnClickListener{ openMap() }
+        alarmSettingButton.setOnClickListener { openAlarmSetting() }
 
         mPresenter = MainPresenter(this, applicationContext)
         mPresenter?.loadCityList()
+
+        NotificationHelper.createNotificationChannel(this,
+                NotificationManagerCompat.IMPORTANCE_DEFAULT, false,
+                getString(R.string.app_name), "App notification channel.")
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
@@ -93,9 +100,9 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
                 val cityDB = CityDatabaseHandler(this)
 
                 val values = ContentValues()
-                values.put(cityName, cityObj.name)
-                values.put(cityLat, cityObj.latitude)
-                values.put(cityLon, cityObj.longitude)
+                values.put(CITY_NAME, cityObj.name)
+                values.put(CITY_LAT, cityObj.latitude)
+                values.put(CITY_LON, cityObj.longitude)
 
                 cityDB.AddCity(values)
 
@@ -151,5 +158,10 @@ class MainActivity : AppCompatActivity(), Contract.View, AdapterView.OnItemSelec
     private fun openMap() {
         val intent = Intent(this, MapsMarkerActivity::class.java)
         startActivityForResult(intent, REQUEST_CODE_MAPS)
+    }
+
+    private fun openAlarmSetting() {
+        val intent = Intent(this, AlarmActivity::class.java)
+        startActivity(intent)
     }
 }

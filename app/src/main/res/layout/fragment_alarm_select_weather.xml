@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="@dimen/dp_20"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/notificationIcon"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_36"
+        android:background="@android:drawable/ic_popup_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_56"
+        android:text="@string/alarm_select_weather_title"
+        android:textSize="@dimen/sp_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notificationIcon" />
+
+    <CheckedTextView
+        android:id="@+id/tv_rainy"
+        style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_40"
+        android:checkMarkTint="@color/design_default_color_primary_variant"
+        android:checkMarkTintMode="add"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="@string/rain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <CheckedTextView
+        android:id="@+id/tv_thunderstorm"
+        style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_188"
+        android:checkMarkTint="@color/design_default_color_primary_variant"
+        android:checkMarkTintMode="add"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="@string/thunderstorm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <CheckedTextView
+        android:id="@+id/tv_swelter"
+        style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_116"
+        android:checkMarkTint="@color/design_default_color_primary_variant"
+        android:checkMarkTintMode="add"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="@string/swelter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

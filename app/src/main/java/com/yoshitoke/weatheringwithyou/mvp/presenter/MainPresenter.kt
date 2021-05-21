@@ -6,6 +6,9 @@ import android.util.Log
 import com.google.gson.Gson
 import com.yoshitoke.weatheringwithyou.mvp.Contract
 import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.CITY_LAT
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.CITY_LON
+import com.yoshitoke.weatheringwithyou.mvp.model.CityDatabaseHandler.Companion.CITY_NAME
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.City
 import com.yoshitoke.weatheringwithyou.mvp.model.DataClass.WeatherInfo
 import com.yoshitoke.weatheringwithyou.utils.AssetsLoader
@@ -34,19 +37,24 @@ class MainPresenter(
                 val gson = Gson()
                 cityList = gson.fromJson(json , Array<City>::class.java).toList()
 
+
                 cityList.forEach{
                     val values = ContentValues()
-                    values.put("name", it.name)
-                    values.put("latitude", it.latitude)
-                    values.put("longitude", it.longitude)
+                    values.put(CITY_NAME, it.name)
+                    values.put(CITY_LAT, it.latitude)
+                    values.put(CITY_LON, it.longitude)
 
                     cityDB.AddCity(values)
+
                 }
             }
             catch (e: JSONException) {
                 e.printStackTrace()
                 onError(e.toString())
             }
+        }
+        cityList.forEach{
+            Log.d("geo", it.name + it.latitude + " " +it.longitude)
         }
 
         onCityListResponse(cityList)

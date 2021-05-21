@@ -35,4 +35,12 @@
     <dimen name="dp_108">108dp</dimen>
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_192">192dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_56">56dp</dimen>
+    <dimen name="dp_188">188dp</dimen>
+    <dimen name="dp_116">116dp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="dp_52">52dp</dimen>
 </resources>

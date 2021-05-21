@@ -22,10 +22,11 @@ import kotlinx.android.synthetic.main.activity_maps.*
 
 class MapsMarkerActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
+    var marker: Marker? = null
+    private lateinit var mGoogleMap: GoogleMap
+    private lateinit var localCity: City
+    
     companion object {
-        var marker: Marker? = null
-        private lateinit var mGoogleMap: GoogleMap
-        private lateinit var localCity: City
         const val CITY_DATA = "CITY_DATA"
     }
 
@@ -49,7 +50,7 @@ class MapsMarkerActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.On
                         .title("Marker in Da Nang")
         )
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(sampleCity.latitude, sampleCity.longitude), 10F))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(sampleCity.latitude, sampleCity.longitude), 5F))
         mGoogleMap.setOnMapLongClickListener(this)
     }
 

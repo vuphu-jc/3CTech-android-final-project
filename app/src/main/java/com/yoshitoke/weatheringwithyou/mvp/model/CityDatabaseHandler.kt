@@ -17,10 +17,10 @@ class CityDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DBName, 
         val DBVersion = 1
 
         val tableName = "cityTable"
-        val cityID = "id"
-        val cityName = "name"
-        val cityLat = "latitude"
-        val cityLon = "longitude"
+        const val CITY_ID = "id"
+        const val CITY_NAME = "name"
+        const val CITY_LAT = "latitude"
+        const val CITY_LON = "longitude"
     }
 
     var context: Context? = context
@@ -34,8 +34,8 @@ class CityDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DBName, 
 
         //SQL for creating table
         val sql1: String = "CREATE TABLE IF NOT EXISTS " + tableName + " " +
-                "(" + cityID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                cityName + " TEXT, " + cityLat + " TEXT, " + cityLon +
+                "(" + CITY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                CITY_NAME + " TEXT, " + CITY_LAT + " TEXT, " + CITY_LON +
                 " TEXT );"
 
         sqlite?.execSQL(sql1);
@@ -65,7 +65,7 @@ class CityDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DBName, 
 
         val sqb = SQLiteQueryBuilder()
         sqb.tables = tableName
-        val cols = arrayOf("id", "name", "latitude", "longitude")
+        val cols = arrayOf(CITY_ID, CITY_NAME, CITY_LAT, CITY_LON)
         val rowSelArg = arrayOf(keyword)
 
         val cur = sqb.query(sqlObj, cols, "name like ?", rowSelArg, null, null, "name")
@@ -74,9 +74,9 @@ class CityDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DBName, 
 
             do {
                 //val id = cur.getInt(cur.getColumnIndex("id"))
-                val cityName = cur.getString(cur.getColumnIndex("name"))
-                val cityLat = cur.getString(cur.getColumnIndex("latitude"))
-                val cityLon = cur.getString(cur.getColumnIndex("longitude"))
+                val cityName = cur.getString(cur.getColumnIndex(CITY_NAME))
+                val cityLat = cur.getString(cur.getColumnIndex(CITY_LAT))
+                val cityLon = cur.getString(cur.getColumnIndex(CITY_LON))
 
                 //add id
                 arraylist.add(City(cityName, cityLon.toDouble(), cityLat.toDouble()))
