@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/location_spinner"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/mapIcon"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:background="@drawable/ic_baseline_location_on_24"
+        app:layout_constraintBottom_toBottomOf="@+id/location_spinner"
+        app:layout_constraintStart_toEndOf="@+id/location_spinner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
