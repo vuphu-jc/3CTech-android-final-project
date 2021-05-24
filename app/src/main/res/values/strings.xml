@@ -14,6 +14,7 @@
     <string name="alarm_edit_title">WeatheringWithYou will let you know how’s the weather like when you want with push notification</string>
     <string name="alarm_select_weather_title">What kind of weather notice would you like to receive?</string>
     <string name="alarm_set_time_title">Now choose the time you want to be notified</string>
+    <string name="alarm_setting_text">Alarm</string>
     <string name="alarm_start_btn">Start</string>
     <string name="alarm_edit_btn">Edit</string>
     <string name="alarm_next_btn">Next</string>

@@ -1,5 +1,6 @@
 package com.yoshitoke.weatheringwithyou.mvp
 
+import android.location.Location
 import com.yoshitoke.weatheringwithyou.alarm.AlarmData
 import com.yoshitoke.weatheringwithyou.mvp.presenter.BasePresenter
 
@@ -12,6 +13,8 @@ interface AlarmContract {
         fun onNextViewTransition()
 
         fun onSpecificViewTransition(position: Int)
+
+        fun requestLocationPermission()
 
     }
 
@@ -32,6 +35,10 @@ interface AlarmContract {
         fun switchToFirstPage()
 
         fun setResultView(view: View.FinalResultView)
+
+        fun requestLocationPermission()
+
+        fun updateLocation(location: Location)
 
     }
 }

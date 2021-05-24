@@ -1,6 +1,7 @@
 package com.yoshitoke.weatheringwithyou.mvp.presenter
 
 import android.content.Context
+import android.location.Location
 import android.os.Handler
 import android.util.Log
 import com.yoshitoke.weatheringwithyou.alarm.AlarmData
@@ -76,5 +77,13 @@ class AlarmPresenter(
 
     override fun setResultView(view: AlarmContract.View.FinalResultView) {
         finalResultView = view
+    }
+
+    override fun requestLocationPermission() {
+        mainView?.requestLocationPermission()
+    }
+
+    override fun updateLocation(location: Location) {
+        TODO("update to SharedPreferences with CURRENT_GPS KEY")
     }
 }

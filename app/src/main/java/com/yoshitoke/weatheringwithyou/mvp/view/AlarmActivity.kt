@@ -45,6 +45,10 @@ class AlarmActivity : AppCompatActivity(), AlarmContract.View, LocationListener 
         screenPager.currentItem = position
     }
 
+    override fun requestLocationPermission() {
+        getLocation()
+    }
+
     private fun getLocation() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
@@ -52,8 +56,9 @@ class AlarmActivity : AppCompatActivity(), AlarmContract.View, LocationListener 
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this)
     }
+
     override fun onLocationChanged(location: Location) {
-        TODO("UPDATE LOCATION TO DATABASE")
+        mPresenter?.updateLocation(location)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

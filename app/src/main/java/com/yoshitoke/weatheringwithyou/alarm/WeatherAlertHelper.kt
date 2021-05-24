@@ -10,7 +10,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 object WeatherAlertHelper {
+    //Test city with rain
+    //We also can get current GPS from SharedPreferences with CURRENT_GPS key
     var bruneiTest: City = City("Brunei",  114.949008710682, 4.8977738654898)
+
 
     fun checkCurrentWeatherForRegisteredAlarm(alarmData: AlarmData, context: Context) {
         val disposable = RetrofitClient.weatherService.getWeatherInfo(bruneiTest.latitude.toString(), bruneiTest.longitude.toString())
@@ -33,7 +36,7 @@ object WeatherAlertHelper {
             val breakline = "\n"
             val secondBodyText = context.getString(R.string.notify_weather_alert_second_body)
 
-            NotificationHelper.createSampleDataNotification(context, title, "", firstBodyText + currentWeather + breakline + secondBodyText, false)
+            NotificationHelper.createSampleDataNotification(context, title, message, firstBodyText + currentWeather + breakline + secondBodyText, false)
         }
     }
 }
